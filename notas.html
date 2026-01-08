@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Notas</title>
+</head>
+<body data-bs-theme="dark" class="container">
+    <h1 class="container text-center m-5">Mis Notas</h1>
+    <div class="card p-3 mb-5">
+        <label class="form-label" for="title">Título para la nota:</label>
+        <input class="form-control mb-2" type="text" id="title" placeholder="Título de la nota">
+        <label class="form-label" for="nota">Escribe tu nota:</label>
+        <input class="form-control mb-2" id="nota" type="text" placeholder="Insertar texto">
+        <button id="agrega" class="btn btn-primary mt-2 ">Guardar</button>
+    </div>
+    <div class="container">
+        <h3><label for="" class="mb-3">Notas guardadas:</label></h3>
+        <ul class="list-group" id="lista">
+            
+        </ul>
+    </div>
+
+    <div class="modal fade" id="modalEditar" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar nota</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input id="editTitulo" class="form-control mb-2" placeholder="Titulo">
+                    <textarea id="editTexto" class="form-control" rows="4" placeholder="Texto"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button id="btnGuardarCambios" class="btn btn primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
