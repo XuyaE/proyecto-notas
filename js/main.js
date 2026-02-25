@@ -4,21 +4,36 @@ const nota = document.getElementById("nota");
 const lista = document.getElementById("lista");
 const editTitulo = document.getElementById('editTitulo');
 const editTexto = document.getElementById('editTexto');
+const userTitle = document.getElementById('userTitle');
 const btnGuardarCambios = document.getElementById('btnGuardarCambios');
+const btnLogOut = document.getElementById("btnLogOut");
 const modal = new bootstrap.Modal(document.getElementById('modalEditar'));
+const token = sessionStorage.getItem('token');
+
 let notaEnEdicion = null;
+
+async function userInfo() {
+
+  const userNombre = await fetch('http://localhost:3000/usuarios/usuario', {
+  headers: {Authorization : token}
+  });
+
+  const userData = await userNombre.json();
+
+  userTitle.textContent = 'Bienvenido, '+userData.nombre;
+}
+userInfo();
 
 function manejarExpiracion(resp) {
   if (resp.status === 401) {
     alert("Tu sesión ha expirado");
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     window.location.href = 'login.html';
     return true;
   }
   return false;
 }
 
-const token = localStorage.getItem('token');
 if (!token){
   alert('Debes iniciar sesión');
   window.location.href = 'login.html';
@@ -32,8 +47,6 @@ btnGuardarCambios.onclick = async () => {
   obtenerNotas();
   modal.hide();
 }
-
-obtenerNotas();
 
 async function obtenerNotas() {
   const resp = await fetch('http://localhost:3000/notas',{
@@ -128,6 +141,12 @@ agrega.addEventListener("click", async () =>{
         title.value = "";
         obtenerNotas();
     }
+});
+
+btnLogOut.addEventListener("click", async () =>{
+  sessionStorage.removeItem('token');
+  alert("Sesion cerrada correctamente");
+  window.location.href = 'login.html';
 });
 
 window.addEventListener('DOMContentLoaded', obtenerNotas);

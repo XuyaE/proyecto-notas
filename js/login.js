@@ -1,3 +1,16 @@
+const token = sessionStorage.getItem('token');
+
+async function verificarSesion(){
+
+    if (token) {
+        const resp = await fetch('http://localhost:3000/usuarios/usuario',{
+            headers: {'Authorization' : token}
+        });
+        if (resp.ok) window.location.href = 'notas.html';
+    }
+}
+verificarSesion();
+
 document.getElementById("btnIngresa").addEventListener('click', async () => {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
@@ -12,9 +25,9 @@ document.getElementById("btnIngresa").addEventListener('click', async () => {
 
     if (response.ok){
     //Guarda token
-    localStorage.setItem('token', data.token);
+    sessionStorage.setItem('token', data.token);
     console.log("Se logro ingresar");
-    window.location.href = 'index.html';
+    window.location.href = 'notas.html';
     } else {
 
     alert(data.mensaje || 'Error al iniciar sesión');
