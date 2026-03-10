@@ -1,9 +1,10 @@
 const token = sessionStorage.getItem('token');
+const API_URL = 'https://proyecto-notas-3h82.onrender.com';
 
 async function verificarSesion(){
 
     if (token) {
-        const resp = await fetch('http://localhost:3000/usuarios/usuario',{
+        const resp = await fetch(API_URL+'/usuarios/usuario',{
             headers: {'Authorization' : token}
         });
         if (resp.ok) window.location.href = 'notas.html';
@@ -15,7 +16,7 @@ document.getElementById("btnIngresa").addEventListener('click', async () => {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    const response = await fetch('http://localhost:3000/usuarios/login', {
+    const response = await fetch(API_URL+'/usuarios/login', {
         method: 'POST',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify({email, password})

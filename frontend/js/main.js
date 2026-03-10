@@ -9,12 +9,13 @@ const btnGuardarCambios = document.getElementById('btnGuardarCambios');
 const btnLogOut = document.getElementById("btnLogOut");
 const modal = new bootstrap.Modal(document.getElementById('modalEditar'));
 const token = sessionStorage.getItem('token');
+const API_URL = 'https://proyecto-notas-3h82.onrender.com';
 
 let notaEnEdicion = null;
 
 async function userInfo() {
 
-  const userNombre = await fetch('http://localhost:3000/usuarios/usuario', {
+  const userNombre = await fetch(API_URL+'/usuarios/usuario', {
   headers: {Authorization : token}
   });
 
@@ -49,7 +50,7 @@ btnGuardarCambios.onclick = async () => {
 }
 
 async function obtenerNotas() {
-  const resp = await fetch('http://localhost:3000/notas',{
+  const resp = await fetch(API_URL+'/notas',{
     method: 'GET',
     headers: {'Authorization': token}
   });
@@ -104,7 +105,7 @@ async function obtenerNotas() {
 }
 
 async function crearNota(texto, titulo) {
-  const resp = await fetch('http://localhost:3000/notas', {
+  const resp = await fetch(API_URL+'/notas', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization' : token },
     body: JSON.stringify({ texto, titulo })
@@ -116,7 +117,7 @@ async function crearNota(texto, titulo) {
 }
 
 async function eliminarNota(id) {
-  const resp = await fetch(`http://localhost:3000/notas/${id}`, {
+  const resp = await fetch(API_URL+`/notas/${id}`, {
     method: 'DELETE',
     headers: {'Authorization' : token}
   });
@@ -124,7 +125,7 @@ async function eliminarNota(id) {
 }
 
 async function actualizarNota(id, texto, titulo) {
-  const resp = await fetch(`http://localhost:3000/notas/${id}`, {
+  const resp = await fetch(API_URL+`/notas/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json', 'Authorization': token },
     body: JSON.stringify({ texto, titulo })
