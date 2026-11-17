@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
     <div class="card">
         <div class="card-body p-3">
             <label for="nombre" class="form-label">Nombre:</label>
-            <input class="form-control mb-3" type="text" id="nombre" placeholder="Nombre">
+            <input class="form-control mb-3" type="text" id="nombre" placeholder="Nombre" required>
             <label class="form-label" for="email">Correo:</label>
             <input class="form-control" type="email" id="email" placeholder="correo@ejemplo.com" required>
             <table class="table table-borderless">
@@ -20,8 +20,8 @@
                     <td><label class="form-label">Confirmar Contraseña:</label></td>
                 </tr>
                 <tr>
-                    <td><input type="password" id="password" placeholder="Contraseña" class="form-control"></td>
-                    <td><input type="password" id="confirmPassword" placeholder="Confirmar contraseña" class="form-control"></td>
+                    <td><input type="password" id="password" placeholder="Contraseña" class="form-control" required></td>
+                    <td><input type="password" id="confirmPassword" placeholder="Confirmar contraseña" class="form-control" required></td>
                 </tr>
             </table>
             <button class="btn btn-primary" id="btnRegistrar">Registrar</button>
