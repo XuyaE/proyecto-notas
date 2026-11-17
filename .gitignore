@@ -1,2 +1,9 @@
-.env
+#Dependencias
 node_modules
+
+#Variables de entorno
+.env
+.env.*
+
+#Archivos de registro
+npm-debug.log*
